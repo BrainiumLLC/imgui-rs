@@ -229,9 +229,12 @@ impl Context {
             clipboard_ctx: None,
         }
     }
-    fn is_current_context(&self) -> bool {
+    pub fn is_current_context(&self) -> bool {
         let ctx = unsafe { sys::igGetCurrentContext() };
         self.raw == ctx
+    }
+    pub unsafe fn set_current_context(&self) {
+        sys::igSetCurrentContext(self.raw);
     }
 }
 
